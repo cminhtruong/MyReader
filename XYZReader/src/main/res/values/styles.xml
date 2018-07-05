@@ -39,4 +39,16 @@
     </style>
 
 
+    <style name="myCardView">
+        <item name="android:layout_margin">4dp</item>
+    </style>
+
+    <style name="imageCardView">
+        <item name="android:layout_height">0dp</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+
 </resources>
