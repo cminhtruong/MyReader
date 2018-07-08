@@ -132,7 +132,7 @@ public class ArticleDetailFragment extends Fragment implements
             }
         });
 
-        mScrollView = mRootView.findViewById(R.id.scrollview);
+        mScrollView = (NestedScrollView) mRootView.findViewById(R.id.scrollview);
         mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
         mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
 
