@@ -17,7 +17,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ShareCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.graphics.Palette;
 import android.text.Html;
 import android.text.format.DateUtils;
@@ -50,10 +53,15 @@ public class ArticleDetailFragment extends Fragment implements
     private long mItemId;
     private View mRootView;
     private int mMutedColor = 0xFF333333;
-    private ObservableScrollView mScrollView;
+    //private ObservableScrollView mScrollView;
+    private NestedScrollView mScrollView;
     private DrawInsetsFrameLayout mDrawInsetsFrameLayout;
     private ColorDrawable mStatusBarColorDrawable;
+    private CollapsingToolbarLayout mCollapsingToolbarLayout;
 
+
+    private FloatingActionButton mFab;
+    private int i = 0;
     private int mTopInset;
     private View mPhotoContainerView;
     private ImageView mPhotoView;
@@ -65,7 +73,7 @@ public class ArticleDetailFragment extends Fragment implements
     // Use default locale format
     private SimpleDateFormat outputFormat = new SimpleDateFormat();
     // Most time functions can only handle 1902 - 2037
-    private GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2,1,1);
+    private GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2, 1, 1);
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -113,7 +121,7 @@ public class ArticleDetailFragment extends Fragment implements
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_article_detail, container, false);
         mDrawInsetsFrameLayout = (DrawInsetsFrameLayout)
                 mRootView.findViewById(R.id.draw_insets_frame_layout);
@@ -124,17 +132,7 @@ public class ArticleDetailFragment extends Fragment implements
             }
         });
 
-        mScrollView = (ObservableScrollView) mRootView.findViewById(R.id.scrollview);
-        mScrollView.setCallbacks(new ObservableScrollView.Callbacks() {
-            @Override
-            public void onScrollChanged() {
-                mScrollY = mScrollView.getScrollY();
-                getActivityCast().onUpButtonFloorChanged(mItemId, ArticleDetailFragment.this);
-                mPhotoContainerView.setTranslationY((int) (mScrollY - mScrollY / PARALLAX_FACTOR));
-                updateStatusBar();
-            }
-        });
-
+        mScrollView = mRootView.findViewById(R.id.scrollview);
         mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
         mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
 
@@ -228,7 +226,7 @@ public class ArticleDetailFragment extends Fragment implements
                 // If date is before 1902, just show the string
                 bylineView.setText(Html.fromHtml(
                         outputFormat.format(publishedDate) + " by <font color='#ffffff'>"
-                        + mCursor.getString(ArticleLoader.Query.AUTHOR)
+                                + mCursor.getString(ArticleLoader.Query.AUTHOR)
                                 + "</font>"));
 
             }
@@ -256,7 +254,7 @@ public class ArticleDetailFragment extends Fragment implements
         } else {
             mRootView.setVisibility(View.GONE);
             titleView.setText("N/A");
-            bylineView.setText("N/A" );
+            bylineView.setText("N/A");
             bodyView.setText("N/A");
         }
     }
