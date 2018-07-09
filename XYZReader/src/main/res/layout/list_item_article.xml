@@ -18,7 +18,8 @@
         <com.example.xyzreader.ui.DynamicHeightNetworkImageView
             android:id="@+id/thumbnail"
             style="@style/imageCardView"
-            android:background="@color/photo_placeholder" />
+            android:background="@color/photo_placeholder"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/article_title"
