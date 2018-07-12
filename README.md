@@ -8,6 +8,13 @@ MyReader is my version of Udacity's Make Your App Material project in Udacity's 
 
 Transformed the user experience of a news reading app using Material Design principles. This includes consistent and meaningful use of Material Design UI components, fonts, color, transition, motion and surfaces.
 
+
+## User Interface
+
+<img src="../master/ui/1.jpg" width="250"> <img src="../master/ui/2.jpg" width="250"><img src="../master/ui/4.jpg" width="500">
+
+<img src="../master/ui/3.jpg" width="500"> 
+
 ## License
 
     Copyright 2017 Cong-Minh Truong
